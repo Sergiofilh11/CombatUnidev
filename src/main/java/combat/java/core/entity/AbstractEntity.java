@@ -1,5 +1,6 @@
 package combat.java.core.entity;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Data
 @MappedSuperclass
 public class AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;

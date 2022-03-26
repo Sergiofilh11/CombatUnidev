@@ -1,5 +1,6 @@
 package combat.java.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import combat.java.core.entity.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,9 @@ public class User extends AbstractEntity {
 
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    private boolean status = false;
 
 }

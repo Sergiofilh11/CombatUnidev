@@ -20,5 +20,7 @@ public class Announcement extends AbstractEntity {
 
     private String name;
 
-    private boolean status;
+    private boolean status = false;
+
+
 }

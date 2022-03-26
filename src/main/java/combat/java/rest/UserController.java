@@ -1,14 +1,14 @@
 package combat.java.rest;
 
 import combat.java.entity.User;
-import combat.java.repository.UserRepository;
+import combat.java.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -16,17 +16,33 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping
     public List<User> listUsers(){
-        return userRepository.findAll();
+        return userService.listUsers();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<User> listUser(@PathVariable Integer id){
+        return userService.listUser(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user){
 
-        return userRepository.save(user);
+        return userService.createUser(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Integer id){
+        userService.deleteUser(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUser(@PathVariable Integer id, @RequestBody User user){
+        userService.update(id,user);
     }
 }
