@@ -1,7 +1,6 @@
 package combat.java.rest;
 
 import combat.java.entity.Announcement;
-import combat.java.entity.User;
 import combat.java.service.AnnouncementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/announcements")
 @RequiredArgsConstructor
 public class AnnouncementController {
 
