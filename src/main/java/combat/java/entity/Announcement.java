@@ -7,7 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 
 @Entity
 @Data
@@ -15,10 +16,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class User extends AbstractEntity {
+public class Announcement extends AbstractEntity {
 
-    private String username;
+    private String name;
 
-    private String password;
-
+    private boolean status;
 }
