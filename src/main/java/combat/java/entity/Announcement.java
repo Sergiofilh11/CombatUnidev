@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
@@ -18,7 +19,14 @@ import javax.persistence.EntityListeners;
 @EntityListeners(AuditingEntityListener.class)
 public class Announcement extends AbstractEntity {
 
-    private String name;
+    @NotBlank
+    private String identificacao;
+
+    @NotBlank
+    private String arquivo;
+
+    @NotBlank
+    private String script_html;
 
     private boolean status = false;
 

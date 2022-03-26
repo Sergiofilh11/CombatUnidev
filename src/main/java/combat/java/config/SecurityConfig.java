@@ -15,9 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("thiago").password("123").roles("USER");
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -26,7 +31,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    public void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .cors()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
     }
 }

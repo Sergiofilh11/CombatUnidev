@@ -43,6 +43,6 @@ public class AnnouncementService {
                     announcementUpdated.setCreatedAt(announcement.getCreatedAt());
                     return announcementRepository.save(announcementUpdated);
                 })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não atualizado!"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Announcement not updated!"));
     }
 }
